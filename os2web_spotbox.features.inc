@@ -7,16 +7,13 @@
 /**
  * Implements hook_ctools_plugin_api().
  */
-function os2web_spotbox_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
+function os2web_spotbox_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
   }
-  list($module, $api) = func_get_args();
   if ($module == "file_entity" && $api == "file_default_displays") {
     return array("version" => "1");
   }
-  list($module, $api) = func_get_args();
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -25,7 +22,7 @@ function os2web_spotbox_ctools_plugin_api() {
 /**
  * Implements hook_views_api().
  */
-function os2web_spotbox_views_api() {
+function os2web_spotbox_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
 }
 
@@ -55,6 +52,7 @@ function os2web_spotbox_image_default_styles() {
         'weight' => 1,
       ),
     ),
+    'label' => 'os2web_spotbox_image_300',
   );
 
   // Exported image style: os2web_spotbox_image_right.
@@ -94,6 +92,7 @@ function os2web_spotbox_image_default_styles() {
         'weight' => 2,
       ),
     ),
+    'label' => 'os2web_spotbox_image_right',
   );
 
   // Exported image style: os2web_spotbox_image_spot5.
@@ -116,6 +115,7 @@ function os2web_spotbox_image_default_styles() {
         'weight' => 1,
       ),
     ),
+    'label' => 'os2web_spotbox_image_spot5',
   );
 
   // Exported image style: os2web_spotbox_image_tall.
@@ -139,6 +139,7 @@ function os2web_spotbox_image_default_styles() {
         'weight' => 1,
       ),
     ),
+    'label' => 'os2web_spotbox_image_tall',
   );
 
   // Exported image style: os2web_spotbox_image_video_front.
@@ -178,6 +179,7 @@ function os2web_spotbox_image_default_styles() {
         'weight' => 2,
       ),
     ),
+    'label' => 'os2web_spotbox_image_video_front',
   );
 
   return $styles;
