@@ -40,3 +40,13 @@ projects[media][version] = "2.0-alpha2"
 
 projects[epsacrop][subdir] = "contrib"
 projects[epsacrop][version] = "2.2"
+
+libraries[jcrop][download][type] = "get"
+libraries[jcrop][download][url] = "http://jcrop.googlecode.com/files/jquery.Jcrop-0.9.8.zip"
+libraries[jcrop][directory_name] = "jcrop"
+libraries[jcrop][destination] = "libraries"
+
+libraries[json2][download][type] = "get"
+libraries[json2][download][url] = "http://github.com/douglascrockford/JSON-js/archive/master.zip"
+libraries[json2][directory_name] = "json2"
+libraries[json2][destination] = "libraries"
