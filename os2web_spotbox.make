@@ -18,7 +18,7 @@ projects[os2web_base][download][url] = "https://github.com/OS2web/os2web_base.gi
 
 ; Features + related
 projects[features][subdir] = "contrib"
-projects[features][version] = "2.0-beta2"
+projects[features][version] = "2.0"
 
 projects[strongarm][subdir] = "contrib"
 projects[strongarm][version] = "2.0"
@@ -29,21 +29,14 @@ projects[strongarm][version] = "2.0"
 projects[ctools][subdir] = "contrib"
 projects[ctools][version] = "1.3"
 
+projects[field_group][version] = "1.3"
 projects[field_group][subdir] = "contrib"
-projects[field_group][version] = "1.1"
-; Patch to remove notices in badly stored features. TODO: add issue on d.o
-; projects[field_group][patch][] = "patches/field_group-1.patch"
 
+projects[file_entity][version] = "2.0-alpha3"
 projects[file_entity][subdir] = "contrib"
-projects[file_entity][version] = "2.0-unstable7"
-; projects[file_entity][patch][] = "http://drupal.org/files/1553094-alt_and_title_support_for_images-175.patch"
-
-projects[views][subdir] = "contrib"
-projects[views][version] = "3.7"
 
 projects[media][subdir] = "contrib"
-projects[media][version] = "2.0-unstable7"
-projects[media][patch][] = "http://drupal.org/files/media-media_browser-preview_javascript_incompatibility-1743040.patch"
+projects[media][version] = "2.0-alpha2"
 
-projects[rules][subdir] = "contrib"
-projects[rules][version] = "2.3"
+projects[epsacrop][subdir] = "contrib"
+projects[epsacrop][version] = "2.2"
