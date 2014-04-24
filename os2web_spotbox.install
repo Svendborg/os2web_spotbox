@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Install/Schema, and uninstall functions for os2web_spotbox.module
+ */
+
+function os2web_spotbox_update_7200() {
+  // This update hook does all the cleanup between 1.x and 2.x.
+
+  // Remove views.
+  // Remove fields.
+
+  // field_delete_field($field_name);
+
+  // ...
+}
