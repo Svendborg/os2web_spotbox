@@ -12,8 +12,6 @@
 function os2web_spotbox_update_7200() {
   // This update hook does all the cleanup between 1.x and 2.x.
 
-  // Remove views.
-
   // Remove fields.
   $fields_to_delete = array(
     'field_os2web_spotbox_lead_image',
