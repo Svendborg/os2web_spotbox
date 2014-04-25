@@ -186,23 +186,27 @@ function os2web_spotbox_field_default_field_instances() {
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
-          0 => 'public',
-          1 => 'private',
+          'public' => 'public',
+          'youtube' => 'youtube',
         ),
         'allowed_types' => array(
-          0 => 'image',
+          'application' => 0,
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 'video',
         ),
-        'browser_plugins' => array(),
-        'collapsible' => 2,
-        'croparea' => '500x500',
-        'enforce_minimum' => 1,
-        'enforce_ratio' => 1,
-        'preview_image_style' => 'os2web_spotbox_image_300',
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'upload' => 'upload',
+          'youtube' => 'youtube',
+        ),
         'progress_indicator' => 'throbber',
-        'resolution' => '300x261',
       ),
       'type' => 'media_generic',
-      'weight' => 5,
+      'weight' => 1,
     ),
   );
 
@@ -553,7 +557,7 @@ function os2web_spotbox_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -693,7 +697,7 @@ function os2web_spotbox_field_default_field_instances() {
         'content_taxonomy_opt_groups' => FALSE,
       ),
       'type' => 'options_select',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
