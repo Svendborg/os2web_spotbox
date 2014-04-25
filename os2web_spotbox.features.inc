@@ -35,24 +35,28 @@ function os2web_spotbox_image_default_styles() {
   // Exported image style: os2web_spotbox_image_300.
   $styles['os2web_spotbox_image_300'] = array(
     'name' => 'os2web_spotbox_image_300',
+    'label' => 'os2web_spotbox_image_300',
     'effects' => array(
-      16 => array(
-        'label' => 'Skalér og beskær',
-        'help' => 'Skalering og beskæring bevarer billedets højde-bredde-forhold og beskærer derefter den største dimension. Det er nyttigt til at generere kvadratiske thumbnails uden at forvrænge billedet.',
-        'effect callback' => 'image_scale_and_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_resize_form',
-        'summary theme' => 'image_resize_summary',
-        'module' => 'image',
-        'name' => 'image_scale_and_crop',
+      9 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 300,
           'height' => 261,
+          'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'white',
+            'bgopacity' => 0.6,
+          ),
         ),
-        'weight' => 1,
+        'weight' => 2,
       ),
     ),
-    'label' => 'os2web_spotbox_image_300',
   );
 
   // Exported image style: os2web_spotbox_image_right.
@@ -121,25 +125,28 @@ function os2web_spotbox_image_default_styles() {
   // Exported image style: os2web_spotbox_image_tall.
   $styles['os2web_spotbox_image_tall'] = array(
     'name' => 'os2web_spotbox_image_tall',
+    'label' => 'os2web_spotbox_image_tall',
     'effects' => array(
-      1 => array(
-        'label' => 'Beskær',
-        'help' => 'Beskæring fjerner dele af billedet for at give det de angivne dimensioner.',
-        'effect callback' => 'image_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_crop_form',
-        'summary theme' => 'image_crop_summary',
-        'module' => 'image',
-        'name' => 'image_crop',
+      11 => array(
+        'label' => 'EPSA Image Crop',
+        'help' => '',
+        'effect callback' => 'epsacrop_crop_image',
+        'form callback' => 'epsacrop_crop_image_form',
+        'module' => 'epsacrop',
+        'name' => 'epsacrop_crop',
         'data' => array(
           'width' => 230,
           'height' => 337,
           'anchor' => 'center-center',
+          'jcrop_settings' => array(
+            'aspect_ratio' => '',
+            'bgcolor' => 'white',
+            'bgopacity' => 0.6,
+          ),
         ),
-        'weight' => 1,
+        'weight' => 2,
       ),
     ),
-    'label' => 'os2web_spotbox_image_tall',
   );
 
   // Exported image style: os2web_spotbox_image_video_front.

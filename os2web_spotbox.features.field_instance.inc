@@ -54,6 +54,12 @@ function os2web_spotbox_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'spotbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -121,6 +127,27 @@ function os2web_spotbox_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'spotbox' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'os2web_spotbox_image_300',
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'image',
+        'weight' => 2,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -136,6 +163,12 @@ function os2web_spotbox_field_default_field_instances() {
       'alt_field' => 1,
       'alt_field_required' => 1,
       'default_image' => 0,
+      'epsacrop' => array(
+        'styles' => array(
+          'os2web_spotbox_image_300' => 'os2web_spotbox_image_300',
+          'os2web_spotbox_image_tall' => 'os2web_spotbox_image_tall',
+        ),
+      ),
       'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
       'focus' => 0,
@@ -150,17 +183,25 @@ function os2web_spotbox_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'imagefield_crop',
+      'module' => 'media',
       'settings' => array(
+        'allowed_schemes' => array(
+          0 => 'public',
+          1 => 'private',
+        ),
+        'allowed_types' => array(
+          0 => 'image',
+        ),
+        'browser_plugins' => array(),
         'collapsible' => 2,
         'croparea' => '500x500',
         'enforce_minimum' => 1,
         'enforce_ratio' => 1,
-        'preview_image_style' => 'os2web_spotbox_image_spot5',
+        'preview_image_style' => 'os2web_spotbox_image_300',
         'progress_indicator' => 'throbber',
         'resolution' => '300x261',
       ),
-      'type' => 'imagefield_crop_widget',
+      'type' => 'media_generic',
       'weight' => 5,
     ),
   );
@@ -203,6 +244,12 @@ function os2web_spotbox_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'spotbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -227,255 +274,6 @@ function os2web_spotbox_field_default_field_instances() {
       ),
       'type' => 'taxonomy_autocomplete',
       'weight' => 20,
-    ),
-  );
-
-  // Exported field_instance: 'node-os2web_spotbox_box-field_os2web_spotbox_focus_sect'
-  $field_instances['node-os2web_spotbox_box-field_os2web_spotbox_focus_sect'] = array(
-    'bundle' => 'os2web_spotbox_box',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => 'os2web_spotbox_image_300',
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'image',
-        'weight' => 14,
-      ),
-      'related_block' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'spotboks' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_os2web_spotbox_focus_sect',
-    'label' => 'Fokus sektionsforside',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 1,
-      'alt_field_required' => 1,
-      'default_image' => 0,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'focus' => 0,
-      'focus_lock_ratio' => 0,
-      'focus_min_size' => '',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '230x158',
-      'title_field' => 1,
-      'title_field_required' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'imagefield_crop',
-      'settings' => array(
-        'collapsible' => 2,
-        'croparea' => '500x500',
-        'enforce_minimum' => 1,
-        'enforce_ratio' => 1,
-        'preview_image_style' => '',
-        'progress_indicator' => 'throbber',
-        'resolution' => '230x160',
-      ),
-      'type' => 'imagefield_crop_widget',
-      'weight' => 6,
-    ),
-  );
-
-  // Exported field_instance: 'node-os2web_spotbox_box-field_os2web_spotbox_image_tall'
-  $field_instances['node-os2web_spotbox_box-field_os2web_spotbox_image_tall'] = array(
-    'bundle' => 'os2web_spotbox_box',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => 'os2web_spotbox_image_tall',
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'image',
-        'weight' => 11,
-      ),
-      'related_block' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'spotboks' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_os2web_spotbox_image_tall',
-    'label' => 'Højt billede',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 1,
-      'alt_field_required' => 1,
-      'default_image' => 0,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'focus' => 0,
-      'focus_lock_ratio' => 0,
-      'focus_min_size' => '',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '230x337',
-      'title_field' => 1,
-      'title_field_required' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'imagefield_crop',
-      'settings' => array(
-        'collapsible' => 3,
-        'croparea' => '500x500',
-        'enforce_minimum' => 1,
-        'enforce_ratio' => 1,
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
-        'resolution' => '230x337',
-      ),
-      'type' => 'imagefield_crop_widget',
-      'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'node-os2web_spotbox_box-field_os2web_spotbox_lead_image'
-  $field_instances['node-os2web_spotbox_box-field_os2web_spotbox_lead_image'] = array(
-    'bundle' => 'os2web_spotbox_box',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => 'os2web_spotbox_image_right',
-          'linked_field' => array(
-            'advanced' => array(
-              'class' => '',
-              'rel' => '',
-              'target' => '',
-              'text' => '',
-              'title' => '',
-            ),
-            'destination' => '',
-            'linked' => 0,
-          ),
-        ),
-        'type' => 'image',
-        'weight' => 10,
-      ),
-      'related_block' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'spotboks' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_os2web_spotbox_lead_image',
-    'label' => 'Billede',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 1,
-      'alt_field_required' => 1,
-      'default_image' => 0,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'focus' => 0,
-      'focus_lock_ratio' => 0,
-      'focus_min_size' => '',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '230x115',
-      'title_field' => 1,
-      'title_field_required' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'imagefield_crop',
-      'settings' => array(
-        'collapsible' => 2,
-        'croparea' => '450x450',
-        'enforce_minimum' => 1,
-        'enforce_ratio' => 1,
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
-        'resolution' => '230x115',
-      ),
-      'type' => 'imagefield_crop_widget',
-      'weight' => 3,
     ),
   );
 
@@ -516,6 +314,12 @@ function os2web_spotbox_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'spotbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -582,6 +386,12 @@ function os2web_spotbox_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'spotbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -647,6 +457,12 @@ function os2web_spotbox_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'spotbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -707,6 +523,12 @@ function os2web_spotbox_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'spotbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -773,6 +595,12 @@ function os2web_spotbox_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'spotbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -838,6 +666,12 @@ function os2web_spotbox_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'spotbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -899,6 +733,25 @@ function os2web_spotbox_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'spotbox' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'text_default',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -965,6 +818,25 @@ function os2web_spotbox_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'spotbox' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1030,6 +902,12 @@ function os2web_spotbox_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'spotbox' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1087,11 +965,8 @@ function os2web_spotbox_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Billede');
   t('Egenavne / Stednavne');
-  t('Fokus sektionsforside');
   t('Forfrem til');
-  t('Højt billede');
   t('KL Emneord');
   t('Link tekst');
   t('Organisation');
