@@ -38,6 +38,9 @@ projects[file_entity][subdir] = "contrib"
 projects[media][subdir] = "contrib"
 projects[media][version] = "2.0-alpha2"
 
+projects[media_youtube][subdir] = "contrib"
+projects[media_youtube][version] = "2.0-rc3"
+
 projects[epsacrop][subdir] = "contrib"
 projects[epsacrop][version] = "2.2"
 
