@@ -5,13 +5,25 @@
  * Install/Schema, and uninstall functions for os2web_spotbox.module
  */
 
+/**
+* Cleanup from version 1.0 => 2.0. BE AWARE: This update will remove & delete
+* unnecessary image fields on the Spotbox content type.
+*/
 function os2web_spotbox_update_7200() {
   // This update hook does all the cleanup between 1.x and 2.x.
 
   // Remove views.
+
   // Remove fields.
+  $fields_to_delete = array(
+    'field_os2web_spotbox_lead_image',
+    'field_os2web_spotbox_image_tall',
+    'field_os2web_spotbox_focus_sect',
+  );
 
-  // field_delete_field($field_name);
+  foreach ($fields_to_delete as $field_name) {
+    field_delete_field($field_name);
+  }
 
-  // ...
+  features_revert(array('os2web_spotbox' => array('views')));
 }
