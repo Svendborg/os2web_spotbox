@@ -58,7 +58,7 @@ function os2web_spotbox_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -176,7 +176,7 @@ function os2web_spotbox_field_default_field_instances() {
       'focus_min_size' => '',
       'max_filesize' => '',
       'max_resolution' => '',
-      'min_resolution' => '300x261',
+      'min_resolution' => '',
       'title_field' => 1,
       'title_field_required' => 0,
       'user_register_form' => FALSE,
@@ -187,21 +187,21 @@ function os2web_spotbox_field_default_field_instances() {
       'settings' => array(
         'allowed_schemes' => array(
           'public' => 'public',
-          'youtube' => 'youtube',
+          'youtube' => 0,
         ),
         'allowed_types' => array(
           'application' => 0,
           'audio' => 0,
           'document' => 0,
           'image' => 'image',
-          'video' => 'video',
+          'video' => 0,
         ),
         'browser_plugins' => array(
           'media_default--media_browser_1' => 'media_default--media_browser_1',
           'media_default--media_browser_my_files' => 0,
           'media_internet' => 0,
           'upload' => 'upload',
-          'youtube' => 'youtube',
+          'youtube' => 0,
         ),
         'progress_indicator' => 'throbber',
       ),
@@ -323,7 +323,7 @@ function os2web_spotbox_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -532,7 +532,7 @@ function os2web_spotbox_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -603,7 +603,7 @@ function os2web_spotbox_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -674,7 +674,7 @@ function os2web_spotbox_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -875,10 +875,9 @@ function os2web_spotbox_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'file_entity',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => 'os2web_spotbox_image_video_front',
+          'file_view_mode' => 'default',
           'linked_field' => array(
             'advanced' => array(
               'class' => '',
@@ -891,7 +890,7 @@ function os2web_spotbox_field_default_field_instances() {
             'linked' => 0,
           ),
         ),
-        'type' => 'image',
+        'type' => 'file_rendered',
         'weight' => 12,
       ),
       'related_block' => array(
@@ -907,10 +906,24 @@ function os2web_spotbox_field_default_field_instances() {
         'weight' => 0,
       ),
       'spotbox' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 6,
+        'label' => 'hidden',
+        'module' => 'file_entity',
+        'settings' => array(
+          'file_view_mode' => 'default',
+          'linked_field' => array(
+            'advanced' => array(
+              'class' => '',
+              'rel' => '',
+              'target' => '',
+              'text' => '',
+              'title' => '',
+            ),
+            'destination' => '',
+            'linked' => 0,
+          ),
+        ),
+        'type' => 'file_rendered',
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -925,8 +938,14 @@ function os2web_spotbox_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
-      'alt_field_required' => 1,
+      'alt_field_required' => 0,
       'default_image' => 0,
+      'epsacrop' => array(
+        'styles' => array(
+          'os2web_spotbox_image_300' => 0,
+          'os2web_spotbox_image_tall' => 0,
+        ),
+      ),
       'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
       'focus' => 0,
@@ -948,6 +967,7 @@ function os2web_spotbox_field_default_field_instances() {
           'youtube' => 'youtube',
         ),
         'allowed_types' => array(
+          'application' => 0,
           'audio' => 0,
           'document' => 0,
           'image' => 0,
