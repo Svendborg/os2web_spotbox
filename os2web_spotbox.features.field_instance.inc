@@ -165,8 +165,9 @@ function os2web_spotbox_field_default_field_instances() {
       'default_image' => 0,
       'epsacrop' => array(
         'styles' => array(
-          'os2web_spotbox_image_300' => 'os2web_spotbox_image_300',
-          'os2web_spotbox_image_tall' => 'os2web_spotbox_image_tall',
+          'os2web_spotbox_image' => 'os2web_spotbox_image',
+          'os2web_spotbox_image_300' => 0,
+          'os2web_spotbox_image_tall' => 0,
         ),
       ),
       'file_directory' => '',
