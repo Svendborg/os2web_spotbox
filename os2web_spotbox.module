@@ -58,6 +58,15 @@ function os2web_spotbox_preprocess_node(&$variables) {
 }
 
 /**
+ * Implements hook_ctools_plugin_directory().
+ */
+function os2web_spotbox_ctools_plugin_directory($module, $plugin) {
+  if (($module == 'ctools' || $module == 'content_types') && !empty($plugin)) {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
  * Implements hook_os2web_help().
  */
 function os2web_spotbox_os2web_help($sections) {
