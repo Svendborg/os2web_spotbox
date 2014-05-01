@@ -42,7 +42,7 @@ projects[media_youtube][subdir] = "contrib"
 projects[media_youtube][version] = "2.0-rc3"
 
 projects[epsacrop][subdir] = "contrib"
-projects[epsacrop][version] = "dev"
+projects[epsacrop][version] = "2.x-dev"
 
 libraries[Jcrop][download][type] = "get"
 libraries[Jcrop][download][url] = "http://jcrop.googlecode.com/files/jquery.Jcrop-0.9.8.zip"
