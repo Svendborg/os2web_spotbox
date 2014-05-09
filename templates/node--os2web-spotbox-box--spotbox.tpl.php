@@ -12,7 +12,6 @@
     <?php if(!empty($content['field_os2web_spotbox_big_image'])) : ?>
       <?php print render($content['field_os2web_spotbox_big_image']); ?>
     <?php endif; ?>
-    <?php $image_render_array = media_youtube_file_formatter_image_view($file, $display, LANGUAGE_NONE); ?>
     <?php print render($content['field_os2web_spotbox_video']); ?>
 
     <?php if(!empty($spotbox_url)) : ?>
