@@ -149,6 +149,16 @@ function os2web_spotbox_spotbox_pane_render($subtype, $conf, $args, $contexts) {
   $spotboxes = array();
   if (isset($result['node'])) {
     $spotbox_nids = array_keys($result['node']);
+    if (!empty($nids)) {
+      // Be sure to order the spotboxes the same way as recieved.
+      $spotbox_nids_ordered = array();
+      foreach ($nids as $nid) {
+        if (!empty($nid) & array_search($nid, $spotbox_nids) !== FALSE) {
+          $spotbox_nids_ordered[] = $nid;
+        }
+      }
+      $spotbox_nids = $spotbox_nids_ordered;
+    }
     $spotboxes = entity_load('node', $spotbox_nids);
   }
 
