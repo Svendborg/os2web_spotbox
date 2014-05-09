@@ -105,7 +105,16 @@ function os2web_spotbox_spotbox_pane_render($subtype, $conf, $args, $contexts) {
 
   // Update the strings to allow contexts.
   if (!empty($contexts)) {
-    $nids       = ctools_context_keyword_substitute($conf['spotbox_nids'], array(), $contexts);
+    $node = array_shift($contexts);
+    $node = $node->data;
+    if(!empty($node->field_os2web_base_field_spotbox['und'])) {
+      $nids = '';
+      foreach ($node->field_os2web_base_field_spotbox['und'] as $key => $spotbox) {
+        $nids .= $spotbox['nid'] . ',';
+      }
+    } else {
+      $nids     = ctools_context_keyword_substitute($conf['spotbox_nids'], array(), $contexts);
+    }
     $count      = ctools_context_keyword_substitute($conf['spotbox_count'], array(), $contexts);
     $offset     = ctools_context_keyword_substitute($conf['spotbox_offset'], array(), $contexts);
     $sitestruct = ctools_context_keyword_substitute($conf['spotbox_sitestruct'], array(), $contexts);
