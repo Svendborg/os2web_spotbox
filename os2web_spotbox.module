@@ -54,7 +54,7 @@ function os2web_spotbox_preprocess_node(&$variables) {
   $node = $variables['node'];
 
   $spotbox_url_field = field_get_items('node', $node, 'field_os2web_spotbox_url');
-  $variables['spotbox_url'] = array_shift($spotbox_url_field)['value'];
+  $variables['spotbox_url'] = !empty($spotbox_url_field) ? array_shift($spotbox_url_field)['value'] : null;
 }
 
 /**
