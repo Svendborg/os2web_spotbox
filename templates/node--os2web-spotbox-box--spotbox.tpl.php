@@ -1,4 +1,6 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+  <?php print render($title_prefix); ?>
+  <?php print render($title_suffix); ?>
   <div class="caption">
   <?php $spotbox_url = (empty($spotbox_url) && isset($variables['elements']['#spotbox_url'])) ? $variables['elements']['#spotbox_url'] : $spotbox_url; ?>
     <?php if(!empty($spotbox_url)) : ?>
