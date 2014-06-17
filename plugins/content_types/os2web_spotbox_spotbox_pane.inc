@@ -17,6 +17,7 @@ $plugin = array(
     'spotbox_count' => '10',
     'spotbox_offset' => '0',
     'spotbox_sitestruct' => '',
+    'spotbox_showlatest' => FALSE,
   ),
 );
 
@@ -76,6 +77,15 @@ function os2web_spotbox_spotbox_pane_edit_form($form, &$form_state) {
     '#suffix' => '</div>',
   );
 
+  $form['spotbox_showlatest'] = array(
+    '#prefix' => '<div class="no-float">',
+    '#title' => t('Vælg at skulle vise de seneste spotboxe hvis der ingen Spotbox ID\'er er angivet ovenover.'),
+    '#type' => 'checkbox',
+    '#default_value' => $conf['spotbox_showlatest'],
+    '#return_value' => TRUE,
+    '#suffix' => '</div>',
+  );
+
   return $form;
 }
 
@@ -102,6 +112,7 @@ function os2web_spotbox_spotbox_pane_render($subtype, $conf, $args, $contexts) {
   $offset = $conf['spotbox_offset'];
   $sitestruct = $conf['spotbox_sitestruct'];
   $spotbox_type = $conf['spotbox_type'];
+  $show_latest = $conf['spotbox_showlatest'];
 
   // Update the strings to allow contexts.
   if (!empty($contexts)) {
@@ -132,20 +143,28 @@ function os2web_spotbox_spotbox_pane_render($subtype, $conf, $args, $contexts) {
     $nids = explode(',', $nids);
     $query->entityCondition('entity_id', $nids, 'IN');
   }
-  elseif (!empty($count)) {
-    // If not specific, query for latest spotboxes.
-    $offset = isset($offset) ? (int) $offset : NULL;
-    $count = isset($count) ? (int) $count : 100;
-    $query->range($offset, $count);
+  elseif ($show_latest) {
+    if (!empty($count)) {
+      // If not specific, query for latest spotboxes with a limit.
+      $offset = isset($offset) ? (int) $offset : NULL;
+      $count = isset($count) ? (int) $count : 100;
+      $query->range($offset, $count);
+    }
+
+    // If the sitestruct are filled, filter the spotboxes.
+    if (!empty($sitestruct)) {
+      $term = taxonomy_get_term_by_name($sitestruct, 'os2web_base_tax_site_structure');
+      $term = array_shift($term);
+      $query->fieldCondition('field_os2web_spotbox_sitestruct', 'tid', $term->tid, '=');
+    }
   }
 
-  if (!empty($sitestruct)) {
-    $term = taxonomy_get_term_by_name($sitestruct, 'os2web_base_tax_site_structure');
-    $term = array_shift($term);
-    $query->fieldCondition('field_os2web_spotbox_sitestruct', 'tid', $term->tid, '=');
+  // We do only query for spotboxes if either we have specific nids or
+  // 'Show latest' are checked. If neither we shouldnt show any spotboxes.
+  if (!empty($nids) || $show_latest) {
+    $result = $query->execute();
   }
 
-  $result = $query->execute();
   $spotboxes = array();
   if (isset($result['node'])) {
     $spotbox_nids = array_keys($result['node']);
