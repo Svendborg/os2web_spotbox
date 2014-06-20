@@ -1,6 +1,7 @@
 <?php
 /**
- * @file os2web_spotbox_spotbox_pane.inc
+ * @file
+ * os2web_spotbox_spotbox_pane.inc
  */
 
 $plugin = array(
@@ -8,9 +9,9 @@ $plugin = array(
   'title'           => t('Spotbox pane'),
   'description'     => t('Spotbox panes lets you display spotboxes.'),
   'category'        => array('Spotbox'),
-  'edit form'       => 'os2web_spotbox_spotbox_pane_edit_form', // A function that will return the settings form for the pane.
-  'render callback' => 'os2web_spotbox_spotbox_pane_render', // A function that will return the renderable content.
-  'all contexts'    => TRUE, // This is NEEDED to be able to use substitution strings in your pane.
+  'edit form'       => 'os2web_spotbox_spotbox_pane_edit_form',
+  'render callback' => 'os2web_spotbox_spotbox_pane_render',
+  'all contexts'    => TRUE,
   'defaults'        => array(
     'spotbox_nids' => '',
     'spotbox_type' => '',
@@ -26,7 +27,6 @@ $plugin = array(
  */
 function os2web_spotbox_spotbox_pane_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
-
 
   $form['spotbox_nids'] = array(
     '#type' => 'textfield',
@@ -79,7 +79,7 @@ function os2web_spotbox_spotbox_pane_edit_form($form, &$form_state) {
 
   $form['spotbox_showlatest'] = array(
     '#prefix' => '<div class="no-float">',
-    '#title' => t('Vælg at skulle vise de seneste spotboxe hvis der ingen Spotbox ID\'er er angivet ovenover.'),
+    '#title' => t("Vælg at skulle vise de seneste spotboxe hvis der ingen Spotbox ID'er er angivet ovenover."),
     '#type' => 'checkbox',
     '#default_value' => $conf['spotbox_showlatest'],
     '#return_value' => TRUE,
@@ -90,7 +90,8 @@ function os2web_spotbox_spotbox_pane_edit_form($form, &$form_state) {
 }
 
 /**
- * Submit function, note anything in the formstate[conf] automatically gets saved
+ * Submit function, note anything in the formstate[conf] automatically gets saved.
+ *
  * Notice, the magic that automatically does that for you.
  */
 function os2web_spotbox_spotbox_pane_edit_form_submit(&$form, &$form_state) {
@@ -102,8 +103,9 @@ function os2web_spotbox_spotbox_pane_edit_form_submit(&$form, &$form_state) {
 }
 
 /**
- * Run-time rendering of the body of the block (content type)
- * See ctools_plugin_examples for more advanced info
+ * Run-time rendering of the body of the block (content type).
+ *
+ * See ctools_plugin_examples for more advanced info.
  */
 function os2web_spotbox_spotbox_pane_render($subtype, $conf, $args, $contexts) {
 
@@ -118,12 +120,13 @@ function os2web_spotbox_spotbox_pane_render($subtype, $conf, $args, $contexts) {
   if (!empty($contexts)) {
     $node = array_shift($contexts);
     $node = $node->data;
-    if(!empty($node->field_os2web_base_field_spotbox['und'])) {
+    if (!empty($node->field_os2web_base_field_spotbox['und'])) {
       $nids = '';
       foreach ($node->field_os2web_base_field_spotbox['und'] as $key => $spotbox) {
         $nids .= $spotbox['nid'] . ',';
       }
-    } else {
+    }
+    else {
       $nids     = ctools_context_keyword_substitute($conf['spotbox_nids'], array(), $contexts);
     }
     $count      = ctools_context_keyword_substitute($conf['spotbox_count'], array(), $contexts);
@@ -131,70 +134,7 @@ function os2web_spotbox_spotbox_pane_render($subtype, $conf, $args, $contexts) {
     $sitestruct = ctools_context_keyword_substitute($conf['spotbox_sitestruct'], array(), $contexts);
   }
 
-  // Get all spotboxes to show.
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'os2web_spotbox_box')
-    ->propertyCondition('status', 1)
-    ->propertyOrderBy('created', 'DESC');
-
-  // If specific nids are spcified, query for them.
-  if (!empty($nids)) {
-    $nids = explode(',', $nids);
-    $query->entityCondition('entity_id', $nids, 'IN');
-  }
-  elseif ($show_latest) {
-    if (!empty($count)) {
-      // If not specific, query for latest spotboxes with a limit.
-      $offset = isset($offset) ? (int) $offset : NULL;
-      $count = isset($count) ? (int) $count : 100;
-      $query->range($offset, $count);
-    }
-
-    // If the sitestruct are filled, filter the spotboxes.
-    if (!empty($sitestruct)) {
-      $term = taxonomy_get_term_by_name($sitestruct, 'os2web_base_tax_site_structure');
-      $term = array_shift($term);
-      $query->fieldCondition('field_os2web_spotbox_sitestruct', 'tid', $term->tid, '=');
-    }
-  }
-
-  // We do only query for spotboxes if either we have specific nids or
-  // 'Show latest' are checked. If neither we shouldnt show any spotboxes.
-  if (!empty($nids) || $show_latest) {
-    $result = $query->execute();
-  }
-
-  $spotboxes = array();
-  if (isset($result['node'])) {
-    $spotbox_nids = array_keys($result['node']);
-    if (!empty($nids)) {
-      // Be sure to order the spotboxes the same way as recieved.
-      $spotbox_nids_ordered = array();
-      foreach ($nids as $nid) {
-        if (!empty($nid) & array_search($nid, $spotbox_nids) !== FALSE) {
-          $spotbox_nids_ordered[] = $nid;
-        }
-      }
-      $spotbox_nids = $spotbox_nids_ordered;
-    }
-    $spotboxes = entity_load('node', $spotbox_nids);
-  }
-
-  $render_array = entity_view('node', $spotboxes, 'spotbox');
-
-  foreach ($render_array['node'] as $key => &$rendered_spotbox) {
-    // If a specific image style is set the formatter.
-    if (!empty($spotbox_type) && isset($rendered_spotbox['field_os2web_spotbox_big_image'][0]['#image_style'])) {
-      $rendered_spotbox['field_os2web_spotbox_big_image'][0]['#image_style'] = $spotbox_type;
-    }
-
-    // Add the spotbox url as an variable to the node. This is used in the
-    // template file.
-    if (isset($rendered_spotbox['field_os2web_spotbox_url']['#items'][0]['value'])) {
-      $rendered_spotbox['#spotbox_url'] = $rendered_spotbox['field_os2web_spotbox_url']['#items'][0]['value'];
-    }
-  }
+  $render_array = os2web_spotbox_render_spotboxes($nids, $count, $offset, $sitestruct, $spotbox_type, $show_latest);
 
   $block = new stdClass();
 
@@ -206,11 +146,11 @@ function os2web_spotbox_spotbox_pane_render($subtype, $conf, $args, $contexts) {
 }
 
 /**
- * 'admin info' callback for panel pane.
+ * Admin info callback for panel pane.
  */
 function os2web_spotbox_spotbox_pane_admin_info($subtype, $conf, $contexts) {
   if (!empty($conf)) {
-    $block = new stdClass;
+    $block = new stdClass();
     $block->title = $conf['override_title'] ? $conf['override_title_text'] : '';
     $block->content = $conf['text'];
     return $block;
