@@ -337,7 +337,7 @@ function os2web_spotbox_field_default_field_bases() {
     'locked' => 0,
     'module' => 'text',
     'settings' => array(
-      'max_length' => 100,
+      'max_length' => 255,
     ),
     'translatable' => 1,
     'type' => 'text',
