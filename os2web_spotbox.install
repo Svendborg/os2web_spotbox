@@ -48,10 +48,8 @@ function _os2web_spotbox_change_text_field_max_length($field_name, $new_length) 
   $field_column = $field_name . '_value';
 
   // Alter value field length in fields table.
-  db_query("UPDATE `{$field_table}` SET `{$field_column}`=SUBSTR(`{$field_column}`, 0, {$new_length})");
   db_query("ALTER TABLE `{$field_table}` CHANGE `{$field_column}` `{$field_column}` VARCHAR( {$new_length} )");
   // Alter value field length in fields revision table.
-  db_query("UPDATE `{$field_revision_table}` SET `{$field_column}`=SUBSTR(`{$field_column}`, 0, {$new_length})");
   db_query("ALTER TABLE `{$field_revision_table}` CHANGE `{$field_column}` `{$field_column}` VARCHAR( {$new_length} )");
 
   // Update field config with new max length.
