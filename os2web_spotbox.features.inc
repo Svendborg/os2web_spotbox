@@ -40,6 +40,7 @@ function os2web_spotbox_image_default_styles() {
       12 => array(
         'label' => 'EPSA Image Crop',
         'help' => '',
+        'dimensions callback' => 'epsacrop_crop_dimensions',
         'effect callback' => 'epsacrop_crop_image',
         'form callback' => 'epsacrop_crop_image_form',
         'module' => 'epsacrop',
